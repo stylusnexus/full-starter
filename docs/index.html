@@ -4,7 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ship and Test with AI Agents — Stylus Nexus</title>
-  <meta name="description" content="Complete development and testing infrastructure for AI-assisted development. Works with Claude Code, Codex, Cursor, and more." />
+  <meta name="description" content="Complete development and testing infrastructure for AI-assisted development. 8 agents, 14 skills, 6 hooks, Playwright E2E, CI workflows. Works with Claude Code, Codex, Cursor." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ship and Test with AI Agents" />
+  <meta property="og:description" content="Fork-ready infrastructure for AI-assisted development. Agents, skills, hooks, memory, mocks, visual verification, and CI — from a production team." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stylusnexus.github.io/full-starter/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ship and Test with AI Agents" />
+  <meta name="twitter:description" content="Complete dev + testing infrastructure for AI coding assistants. 71 files, 3 tool-specific setup docs. Fork and go." />
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://stylusnexus.github.io/full-starter/" />
+  <meta name="robots" content="index, follow" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -266,6 +281,39 @@
       <div class="stat"><div class="stat-num">3</div><div class="stat-label">CI Workflows</div></div>
       <div class="stat"><div class="stat-num">3</div><div class="stat-label">Tool Setup Docs</div></div>
     </div>
+
+    <!-- What You Get -->
+    <hr class="divider" />
+
+    <h2 class="section-title">What you get</h2>
+    <p class="section-sub">Everything a production team uses to ship software with AI coding agents, in one fork-ready repo.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;">
+      <div>
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Development Infrastructure</h3>
+        <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.25rem;">
+          <li><strong>CLAUDE.md</strong> &mdash; project brain with rules, commands, and earned gotchas</li>
+          <li><strong>Domain guidances</strong> &mdash; AI safety, database patterns, testing strategy (loaded on demand, not always)</li>
+          <li><strong>Specialized agents</strong> &mdash; backend, frontend, UX, AI, product, docs, and a domain template</li>
+          <li><strong>Agent memory</strong> &mdash; persistent knowledge that survives across sessions</li>
+          <li><strong>Workflow skills</strong> &mdash; brainstorm, TDD, verify, plan, execute, debug, review, deploy</li>
+          <li><strong>Automated hooks</strong> &mdash; context injection, test guards, coverage checks</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Testing Infrastructure</h3>
+        <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.25rem;">
+          <li><strong>AI mock fixtures</strong> &mdash; deterministic test data instead of expensive live AI calls</li>
+          <li><strong>Auth and profile mocking</strong> &mdash; test every subscription tier without real accounts</li>
+          <li><strong>Visual verification</strong> &mdash; screenshot baselines catch what assertions miss</li>
+          <li><strong>Verify loop</strong> &mdash; build + test + lint before agents claim "done"</li>
+          <li><strong>Experiment-as-test</strong> &mdash; quality regression detection with baseline comparison</li>
+          <li><strong>Tiered CI</strong> &mdash; smoke on PR, regression nightly, visual on UI changes (all manual-trigger by default)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2rem;">These patterns come from a team that ships a production SaaS with AI agents every day. Not theory &mdash; patterns extracted from real failures, real fixes, and real workflow evolution over months of daily use.</p>
 
     <!-- Curious? Section -->
     <hr class="divider" />
