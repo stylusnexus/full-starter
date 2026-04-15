@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ship and Test with AI Agents — Stylus Nexus</title>
+  <meta name="description" content="Complete development and testing infrastructure for AI-assisted development. Works with Claude Code, Codex, Cursor, and more." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f7fafc;
+      --text: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --accent: #d69e2e;
+      --accent-glow: rgba(214, 158, 46, 0.08);
+      --navy: #1a365d;
+      --border: #e2e8f0;
+      --purple: #8b5cf6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 0 3rem;
+    }
+    .hero-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .hero-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .hero-sub a { color: var(--text-secondary); text-decoration: none; }
+    .hero-sub a:hover { color: var(--accent); }
+
+    /* CTAs */
+    .cta-group {
+      text-align: center;
+      margin: 2.5rem 0 3.5rem;
+    }
+    .cta-primary {
+      display: inline-block;
+      background: var(--navy);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: background 0.15s;
+    }
+    .cta-primary:hover { background: #2a4a7f; }
+    .cta-secondary {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+    .cta-secondary a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .cta-secondary a:hover { text-decoration: underline; }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* Section heading */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      background: var(--bg);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(214, 158, 46, 0.1);
+    }
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .card-label.guide { color: var(--accent); }
+    .card-label.starter { color: var(--purple); }
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Setup section */
+    .setup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .setup-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .setup-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .setup-card code {
+      font-size: 0.8rem;
+      background: #f1f5f9;
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      color: #b45309;
+    }
+    .setup-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Stats bar */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1.5rem 0;
+      margin: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .setup-grid { grid-template-columns: 1fr; }
+      .stats { gap: 1.5rem; flex-wrap: wrap; }
+      .container { padding: 2rem 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+      <img src="logo.png" alt="Stylus Nexus" class="hero-logo" />
+      <h1>Ship and Test with <span class="accent">Agents</span></h1>
+      <p>Complete development and testing infrastructure for AI-assisted development. Agents, skills, hooks, memory, mocks, visual verification, CI &mdash; everything in one place.</p>
+      <div class="hero-sub">By <a href="https://github.com/stylusnexus">Stylus Nexus</a></div>
+    </div>
+
+    <!-- Primary CTA -->
+    <div class="cta-group">
+      <a href="https://github.com/stylusnexus/full-starter" class="cta-primary">Fork the Full Starter</a>
+      <div class="cta-secondary">
+        71 files. 8 agents. 14 skills. 6 hooks. Playwright E2E. CI workflows.<br>
+        Point your AI at a setup doc and go.
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Agents</div></div>
+      <div class="stat"><div class="stat-num">14</div><div class="stat-label">Skills</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Hooks</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">CI Workflows</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Tool Setup Docs</div></div>
+    </div>
+
+    <!-- Curious? Section -->
+    <hr class="divider" />
+
+    <h2 class="section-title">Curious to know more?</h2>
+    <p class="section-sub">The full starter bundles patterns from two companion guides. Each one goes deep on its half of the workflow.</p>
+
+    <div class="card-grid">
+      <a href="https://stylusnexus.github.io/shipping-with-agents/" class="card">
+        <div class="card-label guide">Guide</div>
+        <h3>Shipping with Agents</h3>
+        <p>The development workflow. CLAUDE.md architecture, domain agents, persistent memory, automated hooks, skill composition, multi-agent orchestration, and experiment-driven development.</p>
+      </a>
+      <a href="https://stylusnexus.github.io/testing-with-agents/" class="card">
+        <div class="card-label guide">Guide</div>
+        <h3>Testing with Agents</h3>
+        <p>The testing workflow. AI mock fixtures, auth and profile mocking, visual verification, the verify loop, AI-powered UX review, experiment-as-test, and tiered CI integration.</p>
+      </a>
+      <a href="https://github.com/stylusnexus/agent-starter" class="card">
+        <div class="card-label starter">Starter Repo</div>
+        <h3>Agent Starter</h3>
+        <p>Fork-ready development infrastructure. CLAUDE.md, 6 agents, 11 skills, 4 hooks, 3 guidances, and agent memory directories. Companion to Shipping with Agents.</p>
+      </a>
+      <a href="https://github.com/stylusnexus/test-starter" class="card">
+        <div class="card-label starter">Starter Repo</div>
+        <h3>Test Starter</h3>
+        <p>Fork-ready testing infrastructure. Playwright E2E, AI mocks, profile mocking, visual baselines, verify loop, experiment scripts, and 3 CI workflows. Companion to Testing with Agents.</p>
+      </a>
+    </div>
+
+    <!-- Setup docs -->
+    <hr class="divider" />
+
+    <h2 class="section-title">Works with your AI tool</h2>
+    <p class="section-sub">The full starter includes setup docs for each tool. Point your assistant at the right file.</p>
+
+    <div class="setup-grid">
+      <div class="setup-card">
+        <h4>Claude Code</h4>
+        <code>CLAUDE-SETUP.md</code>
+        <p>Plugins, hooks, skills, agent memory</p>
+      </div>
+      <div class="setup-card">
+        <h4>Codex</h4>
+        <code>CODEX-SETUP.md</code>
+        <p>AGENTS.md, plugins, MCP servers</p>
+      </div>
+      <div class="setup-card">
+        <h4>Cursor</h4>
+        <code>CURSOR-SETUP.md</code>
+        <p>.cursorrules, Marketplace, @references</p>
+      </div>
+    </div>
+
+    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+      Using a different tool? The patterns are universal. MCP servers work everywhere. Read the <a href="https://stylusnexus.github.io/shipping-with-agents/#claude-md" style="color: var(--accent); text-decoration: none;">adapter callouts</a> in the guides for translations.
+    </p>
+
+    <!-- Footer -->
+    <footer>
+      <p>Built by <a href="https://github.com/stylusnexus">Stylus Nexus</a> &middot; We build tools for game masters and share what we learn along the way.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
