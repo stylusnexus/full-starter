@@ -1,0 +1,49 @@
+# Smoke Tests — fast sanity check
+#
+# Default: manual trigger only (workflow_dispatch).
+# Uncomment the 'pull_request' trigger when ready for automatic CI.
+#
+# Cost note: Each run uses ~2-5 GitHub Actions minutes.
+# Free tier: 2,000 min/month. See the CI Strategy section below.
+
+name: Smoke Tests
+
+on:
+  workflow_dispatch:  # Manual trigger — click "Run workflow" in GitHub UI
+  # pull_request:     # Uncomment for automatic runs on every PR
+  #   branches: [main]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npx playwright install chromium
+
+      # Uncomment and adjust for your app:
+      # - name: Build and start app
+      #   run: npm run build && npm start &
+      # - name: Wait for app
+      #   run: npx wait-on http://localhost:3000 --timeout 30000
+
+      - name: Run smoke tests
+        run: npx playwright test --grep @smoke
+        env:
+          E2E_BYPASS_AUTH: '1'
+          BASE_URL: http://localhost:3000
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: smoke-report
+          path: playwright-report/
+          retention-days: 7

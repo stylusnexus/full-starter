@@ -1,0 +1,57 @@
+# Visual Tests — screenshot comparison
+#
+# Default: manual trigger only.
+# Uncomment the 'pull_request' trigger with path filters for automatic runs
+# only when UI files change.
+#
+# Cost note: Visual tests are fast but generate large artifacts (screenshots).
+
+name: Visual Tests
+
+on:
+  workflow_dispatch:
+  # pull_request:       # Uncomment for auto-trigger on UI changes
+  #   branches: [main]
+  #   paths:            # Only run when UI files change
+  #     - 'src/components/**'
+  #     - 'src/app/**'
+  #     - '**/*.css'
+  #     - '**/*.scss'
+  #     - 'e2e/suite/visual.spec.ts'
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npx playwright install chromium
+
+      # Uncomment and adjust for your app:
+      # - name: Build and start app
+      #   run: npm run build && npm start &
+      # - name: Wait for app
+      #   run: npx wait-on http://localhost:3000 --timeout 30000
+
+      - name: Run visual tests
+        run: npx playwright test --grep @visual
+        env:
+          E2E_BYPASS_AUTH: '1'
+          BASE_URL: http://localhost:3000
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-diff
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14

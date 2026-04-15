@@ -1,0 +1,19 @@
+{
+  "id": "gen_sample_001",
+  "content": {
+    "title": "Sample Generated Content",
+    "description": "This is a mock AI-generated response used for testing. It has a predictable structure so assertions can target specific fields.",
+    "details": {
+      "category": "example",
+      "tags": ["mock", "test", "sample"],
+      "quality_score": 0.92
+    }
+  },
+  "model": "mock-model",
+  "usage": {
+    "prompt_tokens": 150,
+    "completion_tokens": 200,
+    "total_tokens": 350
+  },
+  "created_at": "2026-01-15T10:30:00Z"
+}

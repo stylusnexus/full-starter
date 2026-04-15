@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+*.swo
+*~
+node_modules/
+dist/
+.playwright-auth/
+playwright-report/
+test-results/
+e2e/screenshots/
+*.env
+!.env.example

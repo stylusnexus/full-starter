@@ -1,0 +1,19 @@
+{
+  "name": "full-starter",
+  "version": "1.0.0",
+  "description": "Complete development + testing infrastructure for AI-assisted development",
+  "scripts": {
+    "test": "npx playwright test --grep @smoke",
+    "test:all": "npx playwright test",
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:regression": "npx playwright test --grep @regression",
+    "test:visual": "npx playwright test --grep @visual",
+    "verify": "bash scripts/verify.sh"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "dotenv": "^16.4.0"
+  },
+  "keywords": ["testing", "playwright", "ai", "agents", "development", "workflow"],
+  "license": "MIT"
+}
