@@ -29,6 +29,10 @@ Read the existing CLAUDE.md and SETUP.md to understand the starter structure, th
 - Dev commands (`npm run dev`, `npm run build`, etc.)
 - 3-5 known gotchas or critical rules
 
+### Step 1.5: Visual Planning
+
+Run `/visualize-project` to generate architecture diagrams. The skill auto-detects project complexity and generates tiered Mermaid diagrams to `docs/architecture/diagrams/`. These ground the Architecture section in CLAUDE.md with confirmed visuals instead of guesses.
+
 ### Step 2: Testing Infrastructure
 
 - Update `e2e/mocks/ai-generation-mock.ts` — replace `**/api/generate` with your actual AI endpoint(s)
