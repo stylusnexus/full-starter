@@ -26,6 +26,24 @@
 <!-- - Run tests before committing changes to auth or payment code -->
 <!-- - Use parameterized queries, never string concatenation -->
 
+## Preferred Tools
+
+Token economics matter on long sessions. Default to the cheapest tool that gets the job done.
+
+### Data Fetching
+
+1. **WebFetch**: free, text-only, works on public pages that don't block bots.
+2. **agent-browser CLI**: free, local Rust CLI plus Chrome via CDP. Use this for dynamic pages or auth walls that WebFetch can't handle. Returns the accessibility tree with element refs (~80% fewer tokens than screenshot-based browsing). Install: `npm i -g agent-browser && agent-browser install`.
+3. **Notice recurring fetch patterns and propose wrapping them as dedicated tools.** When the same fetch/parse logic comes up more than once, suggest wrapping it as a named tool (a skill file or a script that calls `agent-browser` with the snapshot and extraction baked in).
+
+### PDF Files
+
+Use `pdftotext`, not the `Read` tool. `Read` loads PDFs as images, which is far more expensive. Reserve `Read` for cases where the user explicitly asks to analyze images or charts inside the document.
+
+### Session Hygiene
+
+See [.claude/guidances/session-hygiene.md](./.claude/guidances/session-hygiene.md) for cache protection, the five session moves (`/compact`, `/clear`, `/rewind`, subagent, fresh start), and `/effort` dial guidance. The starter ships with `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` and `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=80` set in `.claude/settings.json`. Override either if your work genuinely benefits from the 1M window.
+
 ## Common Gotchas
 
 <!-- Bugs and patterns that keep biting. Add yours as you find them: -->
