@@ -8,5 +8,21 @@ dist/
 playwright-report/
 test-results/
 e2e/screenshots/
+# Secrets & env — note: `*.env` alone does NOT match `.env.local`/`.env.production`,
+# so the dotfile forms are listed explicitly. Keep `.env.example` tracked.
 *.env
+.env
+.env.*
 !.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.keystore
+secrets.json
+.secrets/
+credentials.json
+service-account*.json
+gha-creds-*.json

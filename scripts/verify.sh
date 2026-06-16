@@ -33,6 +33,7 @@ echo ""
 # run_check "TypeScript" npx tsc --noEmit
 # run_check "Lint" npm run lint
 # run_check "Build" npm run build
+# run_check "Security" ./scripts/security-scan.sh   # secrets + deps; see SECURITY.md
 run_check "Smoke Tests" npx playwright test --grep @smoke
 
 echo "═══════════════════════════════════════════"

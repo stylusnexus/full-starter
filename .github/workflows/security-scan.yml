@@ -1,0 +1,56 @@
+# Security Scan — secrets + dependency audit
+#
+# Default: manual trigger only (workflow_dispatch).
+# Uncomment 'pull_request' / 'push' when ready for automatic CI.
+#
+# Cost note: ~1-2 GitHub Actions minutes per run.
+# Free tier: 2,000 min/month. See .github/workflows/CI-STRATEGY.md.
+
+name: Security Scan
+
+on:
+  workflow_dispatch:    # Manual trigger — click "Run workflow" in GitHub UI
+  # pull_request:       # Uncomment for automatic runs on every PR
+  #   branches: [main]
+  # push:
+  #   branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so gitleaks can scan past commits
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_CONFIG: .gitleaks.toml   # adds OpenAI/Anthropic rules over the defaults
+          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}  # only needed for orgs
+
+  dependencies:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Skips cleanly if there is no package.json yet.
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: npm audit (high+)
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=high
+          else
+            echo "No package.json — nothing to audit."
+          fi
