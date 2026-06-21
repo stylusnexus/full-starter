@@ -44,6 +44,10 @@ Use `pdftotext`, not the `Read` tool. `Read` loads PDFs as images, which is far 
 
 See [.claude/guidances/session-hygiene.md](./.claude/guidances/session-hygiene.md) for cache protection, the five session moves (`/compact`, `/clear`, `/rewind`, subagent, fresh start), and `/effort` dial guidance. The starter ships with `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` and `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=80` set in `.claude/settings.json`. Override either if your work genuinely benefits from the 1M window.
 
+### Unattended Work & Connected Tools
+
+Before letting an agent run without you watching each step (`/schedule`, `/loop`, event-triggered or background work), read [.claude/guidances/unattended-agents.md](./.claude/guidances/unattended-agents.md) — the seven-point guardrail for narrow jobs, limited access, and human approval on high-risk changes. For MCP/plugin connection posture (start read-only, least privilege, production last), see the **Agent tooling** section of [SECURITY.md](./SECURITY.md).
+
 ## Common Gotchas
 
 <!-- Bugs and patterns that keep biting. Add yours as you find them: -->
