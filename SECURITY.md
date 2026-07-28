@@ -89,6 +89,33 @@ If the app calls an LLM, treat these as first-class:
 
 ---
 
+## Agent tooling — MCP & connected services
+
+The checklists above secure the app you ship. This one secures the agent that builds it.
+Connecting an MCP server, plugin, or external tool gives Claude more reach — and every bit
+of reach is also a new way for a bad instruction, an unsafe tool, or a plain mistake to
+cause damage. Grant the least that does the job.
+
+- [ ] **Start read-only.** A new connection — especially a database — begins read-only.
+      Widen to write access only when a specific task needs it, then narrow it back.
+- [ ] **Scope, don't grant-all.** A GitHub connection doesn't need every repo; a database
+      connection doesn't need every schema. Connect to the slice the work touches.
+- [ ] **Production is never the first environment you connect.** Point tools at a local
+      stack, a branch, or staging first. A production server is the last thing you wire up,
+      not the first.
+- [ ] **Vet the source before connecting.** For any third-party MCP server or plugin, check
+      the maintainer, the permissions it requests, and what it can run. A plugin can execute
+      commands, read files, and change Claude's behavior — treat installing one like adding a
+      dependency, not clicking "allow."
+- [ ] **Connect at session start, not mid-session.** Lock your tool set before you begin.
+      Adding an MCP mid-session also blows the prompt cache — see
+      [`.claude/guidances/session-hygiene.md`](.claude/guidances/session-hygiene.md).
+
+When a connected agent runs *unattended*, these stop being optional — see
+[`.claude/guidances/unattended-agents.md`](.claude/guidances/unattended-agents.md).
+
+---
+
 ## Data inventory (fill in per project)
 
 | Data | Store | Region | Processor | Notes |
