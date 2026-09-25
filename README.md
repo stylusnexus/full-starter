@@ -23,9 +23,9 @@ Each setup doc walks your AI assistant through scanning your codebase and custom
 
 - **CLAUDE.md** — project brain with rules, commands, and gotchas
 - **Guidances** — on-demand domain knowledge (AI safety, database patterns, testing strategy)
-- **6 agents** — backend-engineer, ui-engineer, ux-designer, ai-engineer, product-manager, technical-writer
+- **2 agents** — backend-engineer, technical-writer
 - **Agent memory** — persistent knowledge directories per agent
-- **11 skills** — brainstorm, TDD, verify, write-plan, execute-plan, debug, orient, review-and-ship, deploy, activity-summary, experiment
+- **12 skills** — brainstorm, TDD, verify, write-plan, execute-plan, debug, orient, review-and-ship, deploy, activity-summary, experiment, redline
 - **4 hooks** — domain context loader, instrumentation check, require-tests guard, test coverage advisory
 
 ### Testing Infrastructure (from test-starter)
@@ -61,9 +61,9 @@ full-starter/
 │
 ├── .claude/
 │   ├── guidances/                     # Domain knowledge (3 examples)
-│   ├── agents/                        # 7 agents (6 dev + 1 testing)
+│   ├── agents/                        # 3 agents (2 dev + 1 testing)
 │   ├── agent-memory/                  # Per-agent persistent knowledge
-│   ├── skills/                        # 14 skills (11 dev + 3 testing)
+│   ├── skills/                        # 15 skills (12 dev + 3 testing)
 │   ├── hooks/                         # 6 hooks (4 dev + 2 testing)
 │   └── settings.json                  # All hooks wired
 │
@@ -85,11 +85,6 @@ full-starter/
     ├── test-visual.yml
     └── CI-STRATEGY.md                 # Tiered CI guide
 ```
-
-## Companion Guides
-
-- **[Shipping with Agents](https://stylusnexus.github.io/shipping-with-agents/)** — the development patterns behind agent-starter
-- **[Testing with Agents](https://stylusnexus.github.io/testing-with-agents/)** — the testing patterns behind test-starter
 
 ## License
 

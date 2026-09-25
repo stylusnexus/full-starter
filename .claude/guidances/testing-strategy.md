@@ -18,6 +18,16 @@ Loaded automatically when editing test files or modifying tested modules.
 | Integration | API routes, database queries, service interactions | Auth flow, CRUD operations |
 | E2E | Critical user journeys only | Login, checkout, core feature |
 
+## The terminus test
+
+**Any value threaded through two or more hops needs a test at its final destination proving it arrived.**
+
+Hops look like `UI → state → route → service → DB`, or `config → orchestrator → downstream call`. Write the test at the *terminus* — query the database, assert on what the downstream call actually received — not at any point in between.
+
+This exists because of a bug class that survives ordinary review. Every intermediate hop is *locally correct*: each function does receive the value and does pass it on. But somewhere a destructure omits it, a DTO mapping leaves it out, or an object spread overwrites it. Nothing throws. No hop's review catches it, because no hop is individually wrong. The value simply never arrives, and the feature looks shipped.
+
+A test at hop three proves nothing about hop five. Only the terminus counts.
+
 ## Patterns
 
 - Mock external services, not your own code
@@ -32,3 +42,4 @@ Loaded automatically when editing test files or modifying tested modules.
 - Mocking too much (tests pass but production breaks)
 - Not testing error paths and edge cases
 - Slow tests that nobody runs locally
+- Asserting a threaded value mid-journey instead of at its terminus
