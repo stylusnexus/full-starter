@@ -1,8 +1,8 @@
-# Claude Code Project Setup
+# Tool-Agnostic Project Setup
 
-> **For Claude**: Read this document, then follow the workflow below to set up a project for effective agent-assisted development. Scan the project first, ask the user targeted questions, then generate the right files.
+> **For the agent**: Read this document, then follow the workflow below to set up a project for effective agent-assisted development. Scan the project first, ask the user targeted questions, then generate the right files. This runbook is tool-agnostic — it generates `AGENTS.md`, which every tool can read. If you're Claude Code or Codex specifically, prefer `CLAUDE-SETUP.md` or `CODEX-SETUP.md` instead; they cover tool-specific plugins and hooks this doc doesn't.
 >
-> **For you**: Point Claude at this doc with: "Read `SETUP.md` and set up this project."
+> **For you**: Point your AI assistant at this doc with: "Read `SETUP.md` and set up this project."
 
 ---
 
@@ -26,8 +26,8 @@ ls .eslintrc* .prettierrc* tsconfig.json vitest.config* jest.config* playwright.
 # What scripts are available?
 cat package.json | grep -A 30 '"scripts"' 2>/dev/null || cat pyproject.toml 2>/dev/null | grep -A 20 '\[tool\.'
 
-# Does any Claude config exist already?
-ls CLAUDE.md .claude/ .cursorrules .github/copilot-instructions.md 2>/dev/null
+# Does any agent config exist already?
+ls AGENTS.md CLAUDE.md .claude/ .cursorrules .github/copilot-instructions.md 2>/dev/null
 
 # What env files exist?
 ls .env* 2>/dev/null
@@ -78,14 +78,18 @@ After scanning, ask these questions (skip any you can already answer from the sc
 
 ---
 
-## Phase 2: Generate CLAUDE.md
+## Phase 2: Generate AGENTS.md
 
-Create `CLAUDE.md` in the project root. Adapt the template below based on Phase 1 findings. Only include sections that are relevant. Don't add placeholder sections.
+Create `AGENTS.md` in the project root — the project brain every tool reads from. (If
+`CLAUDE.md` doesn't already exist as a one-line pointer to it, add one: `Read
+[AGENTS.md](./AGENTS.md).` Don't duplicate content into both files.) Adapt the template
+below based on Phase 1 findings. Only include sections that are relevant. Don't add
+placeholder sections.
 
 ### Core Sections (always include)
 
 ```markdown
-# CLAUDE.md
+# AGENTS.md
 
 ## Project Overview
 [Fill from user's one-sentence description + detected stack]
@@ -178,7 +182,7 @@ Types: feat, fix, chore, docs, test, refactor, perf, ci
 ### Create If the Project Has 3+ Modules or Domains
 
 ```
-.claude/guidances/          # Domain-specific context (split from CLAUDE.md later)
+.claude/guidances/          # Domain-specific context (split from AGENTS.md later)
 ```
 
 Write a starter guidance only if you detected a complex domain during scanning (e.g., a testing setup with multiple frameworks, a multi-service architecture).
@@ -211,7 +215,7 @@ description: [when to use this]
 
 - Agents (`.claude/agents/`) -- wait until there are genuinely distinct domains
 - Memory directories -- Claude Code creates these automatically
-- Guidances -- wait until CLAUDE.md exceeds ~500 lines
+- Guidances -- wait until AGENTS.md exceeds ~500 lines
 
 ---
 
@@ -220,10 +224,10 @@ description: [when to use this]
 Run these checks before reporting completion:
 
 ```bash
-# CLAUDE.md exists and is non-empty
-test -s CLAUDE.md && echo "CLAUDE.md: OK"
+# AGENTS.md exists and is non-empty
+test -s AGENTS.md && echo "AGENTS.md: OK"
 
-# Every command documented in CLAUDE.md actually works
+# Every command documented in AGENTS.md actually works
 # Run each dev/build/test/lint command and confirm it succeeds
 
 # .claude/ directory exists
@@ -248,9 +252,9 @@ These milestones tell you when to evolve your setup:
 | Milestone | Action |
 |-----------|--------|
 | Same instruction given 3+ times | Create a `.claude/skills/` skill for it |
-| CLAUDE.md hits 500+ lines | Split into `.claude/guidances/` by domain |
+| AGENTS.md hits 500+ lines | Split into `.claude/guidances/` by domain |
 | 2+ distinct work domains emerge | Create first `.claude/agents/` agent |
-| Agent makes same mistake twice | Add to Common Gotchas in CLAUDE.md |
+| Agent makes same mistake twice | Add to Common Gotchas in AGENTS.md |
 | Complex verification needed | Add to pre-commit checklist |
 | New env file or service added | Update Environment section |
 | First deployment | Add Deployment section |
@@ -262,7 +266,7 @@ When setting up, avoid:
 1. **Placeholder sections** -- don't add "## Authentication" with "[TODO]". Only add sections you can fill now.
 2. **Aspirational commands** -- only document commands that actually work today.
 3. **Over-scaffolding** -- no agents, guidances, or complex skill trees for a new project. Start minimal.
-4. **Duplicating README** -- CLAUDE.md is agent context, not user documentation. Focus on gotchas, patterns, and constraints that prevent mistakes.
+4. **Duplicating README** -- AGENTS.md is agent context, not user documentation. Focus on gotchas, patterns, and constraints that prevent mistakes.
 5. **Generic advice** -- "write clean code" helps nobody. "Always use parameterized queries, never string concatenation" prevents a bug.
 
 ## Reference: Recommended Defaults
@@ -277,4 +281,4 @@ Apply these unless the project specifies otherwise:
 
 ---
 
-*Part of the [Agent Starter](https://github.com/stylusnexus/agent-starter) template by [Stylus Nexus](https://github.com/stylusnexus). Full guide: [Shipping with Agents](https://stylusnexus.github.io/shipping-with-agents/).*
+*Part of [Full Starter](https://github.com/stylusnexus/full-starter) by [Stylus Nexus](https://github.com/stylusnexus). Skills come from the [agent-plugins](https://github.com/stylusnexus/agent-plugins) marketplace.*

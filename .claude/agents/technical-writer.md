@@ -30,4 +30,4 @@ You have persistent memory at `.claude/agent-memory/technical-writer/`.
 **After completing**: Update memory with new domain-specific insights worth preserving.
 
 **Save**: Documentation conventions, terminology decisions, common reader confusion points, doc structure patterns.
-**Skip**: Session-specific context, info already in CLAUDE.md, general writing advice.
+**Skip**: Session-specific context, info already in AGENTS.md, general writing advice.

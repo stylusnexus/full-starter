@@ -2,6 +2,18 @@
 
 All workflows default to **manual trigger only** (`workflow_dispatch`). This keeps costs at zero until you're ready. Enable automatic triggers by uncommenting the relevant sections in each workflow file.
 
+## Workflows
+
+| File | Default trigger | Purpose | Cost |
+|---|---|---|---|
+| `test-smoke.yml` | Manual | Fast sanity check | ~2-5 min/run |
+| `test-regression.yml` | Manual | Full E2E suite | ~10-30 min/run |
+| `test-visual.yml` | Manual | Screenshot comparison | ~2-10 min/run |
+| `security-scan.yml` | Manual | Secrets + dependency audit | ~1-2 min/run |
+| `lockfile-integrity.yml` | Manual | Supply-chain sanity check on `package-lock.json` (npm only — delete or adapt if using pnpm/yarn/bun) | ~1 min/run |
+| `commitlint.yml` | Manual | Conventional Commits check on PR title | ~10-20 sec/run — cheapest test/lint one here, see the file's own comment on making it automatic |
+| `release-please.yml` | Manual | CHANGELOG + version bump PR automation (optional) | ~10-20 sec/run — like commitlint, arguably better run automatically; see the file's own comment |
+
 ## GitHub Actions Minutes
 
 GitHub Free: **2,000 minutes/month** (Linux runners)
@@ -15,7 +27,7 @@ Each E2E test run typically uses 2-10 minutes depending on test count and app bu
 
 ### Minimal (Solo Devs)
 
-Keep everything manual. Run tests locally with `/test-e2e` or `npm test`. Trigger workflows from GitHub UI when you want a CI check before merging.
+Keep everything manual. Run tests locally with `npm test` (or the `test-e2e` skill from the agent-plugins marketplace, if installed — see `README.md`'s Skills section). Trigger workflows from GitHub UI when you want a CI check before merging.
 
 **Enable:** Nothing — use `workflow_dispatch` as-is
 **Cost:** ~0 minutes/month (only when you manually trigger)

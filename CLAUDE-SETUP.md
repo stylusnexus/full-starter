@@ -11,7 +11,7 @@ Read CLAUDE-SETUP.md and set up my project.
 This starter includes a complete development + testing infrastructure. When you run this setup, Claude will:
 
 1. **Scan your codebase** to understand your tech stack, project structure, and conventions
-2. **Customize CLAUDE.md** with your project's overview, dev commands, and initial gotchas
+2. **Customize AGENTS.md** with your project's overview, dev commands, and initial gotchas — `CLAUDE.md` just points there, leave it alone
 3. **Update guidances** to match your domain areas (auth, database, AI, etc.)
 4. **Configure agent definitions** with your project-specific context
 5. **Wire up testing** — update route patterns in mocks, selectors in page objects, auth config
@@ -22,7 +22,7 @@ This starter includes a complete development + testing infrastructure. When you 
 
 ### Step 1: Project Context
 
-Read the existing CLAUDE.md and SETUP.md to understand the starter structure, then scan the project to fill in:
+Read the existing AGENTS.md and SETUP.md to understand the starter structure, then scan the project to fill in:
 
 - What does this app do? (2 sentences)
 - Tech stack (framework, database, hosting)
@@ -31,7 +31,7 @@ Read the existing CLAUDE.md and SETUP.md to understand the starter structure, th
 
 ### Step 1.5: Visual Planning
 
-Run `/visualize-project` to generate architecture diagrams. The skill auto-detects project complexity and generates tiered Mermaid diagrams to `docs/architecture/diagrams/`. These ground the Architecture section in CLAUDE.md with confirmed visuals instead of guesses.
+Install `codebase-intel@stylus-nexus` from the agent-plugins marketplace (see Recommended Plugins below) and run its `codebase-architecture-scanner` skill to generate layered architecture diagrams. These ground the Architecture section in AGENTS.md with confirmed visuals instead of guesses.
 
 ### Step 2: Testing Infrastructure
 
@@ -58,16 +58,19 @@ Run `./scripts/verify.sh` to confirm the basic setup works.
 
 ## Recommended Plugins
 
-After setup, install these plugins for the full workflow:
+Full Starter doesn't bundle skills as static files — install them live instead:
 
-```bash
-claude install-plugin superpowers      # Workflow skills (brainstorm, TDD, plans)
-claude install-plugin hookify          # Create hooks from conversation analysis
-claude install-plugin commit-commands  # Commit, push, PR automation
-claude install-plugin pr-review-toolkit # Multi-agent code review
 ```
+/plugin marketplace add stylusnexus/agent-plugins
+/plugin install ship-pipeline@stylus-nexus       # daily verify → review → merge loop
+/plugin install hardening@stylus-nexus           # pre-launch security gates
+/plugin install codebase-intel@stylus-nexus      # architecture scans, docs grounding
+```
+
+See `README.md`'s Skills section for the full pack list, plus a short list of
+non-agent-plugins skills in daily rotation (superpowers, pr-review-toolkit,
+commit-commands, code-simplifier, context7).
 
 ## Learn More
 
-- [Shipping with Agents](https://stylusnexus.github.io/shipping-with-agents/) — development workflow patterns
-- [Testing with Agents](https://stylusnexus.github.io/testing-with-agents/) — testing patterns
+- [agent-plugins](https://github.com/stylusnexus/agent-plugins) — the marketplace this starter's skills come from

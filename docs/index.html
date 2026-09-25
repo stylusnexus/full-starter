@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ship and Test with AI Agents — Stylus Nexus</title>
-  <meta name="description" content="Complete development and testing infrastructure for AI-assisted development. 3 agents, 15 skills, 6 hooks, Playwright E2E, CI workflows. Works with Claude Code, Codex, Cursor." />
+  <meta name="description" content="Complete development and testing infrastructure for AI-assisted development. 3 agents, 13 hooks, Playwright E2E, CI workflows, skills via the agent-plugins marketplace. Works with Claude Code, Codex, Cursor." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Ship and Test with AI Agents" />
-  <meta property="og:description" content="Fork-ready infrastructure for AI-assisted development. Agents, skills, hooks, memory, mocks, visual verification, and CI — from a production team." />
+  <meta property="og:description" content="Fork-ready infrastructure for AI-assisted development. Agents, hooks, memory, mocks, visual verification, and CI — plus the agent-plugins marketplace for skills — from a production team." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://stylusnexus.github.io/full-starter/" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Ship and Test with AI Agents" />
-  <meta name="twitter:description" content="Complete dev + testing infrastructure for AI coding assistants. 71 files, 3 tool-specific setup docs. Fork and go." />
+  <meta name="twitter:description" content="Complete dev + testing infrastructure for AI coding assistants. 94 files, 3 tool-specific setup docs. Fork and go." />
 
   <!-- SEO -->
   <link rel="canonical" href="https://stylusnexus.github.io/full-starter/" />
@@ -260,7 +260,7 @@
     <div class="hero">
       <img src="logo.png" alt="Stylus Nexus" class="hero-logo" />
       <h1>Ship and Test with <span class="accent">Agents</span></h1>
-      <p>Complete development and testing infrastructure for AI-assisted development. Agents, skills, hooks, memory, mocks, visual verification, CI &mdash; everything in one place.</p>
+      <p>Complete development and testing infrastructure for AI-assisted development. Agents, hooks, memory, mocks, visual verification, CI &mdash; plus the agent-plugins marketplace for skills.</p>
       <div class="hero-sub">By <a href="https://github.com/stylusnexus">Stylus Nexus</a></div>
     </div>
 
@@ -268,7 +268,7 @@
     <div class="cta-group">
       <a href="https://github.com/stylusnexus/full-starter" class="cta-primary">Fork the Full Starter</a>
       <div class="cta-secondary">
-        87 files. 3 agents. 15 skills. 6 hooks. Playwright E2E. CI workflows.<br>
+        94 files. 3 agents. 13 hooks. Playwright E2E. CI workflows. Skills via agent-plugins.<br>
         Point your AI at a setup doc and go.
       </div>
     </div>
@@ -276,8 +276,7 @@
     <!-- Stats -->
     <div class="stats">
       <div class="stat"><div class="stat-num">3</div><div class="stat-label">Agents</div></div>
-      <div class="stat"><div class="stat-num">15</div><div class="stat-label">Skills</div></div>
-      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Hooks</div></div>
+      <div class="stat"><div class="stat-num">13</div><div class="stat-label">Hooks</div></div>
       <div class="stat"><div class="stat-num">3</div><div class="stat-label">CI Workflows</div></div>
       <div class="stat"><div class="stat-num">3</div><div class="stat-label">Tool Setup Docs</div></div>
     </div>
@@ -292,12 +291,11 @@
       <div>
         <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Development Infrastructure</h3>
         <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.25rem;">
-          <li><strong>CLAUDE.md</strong> &mdash; project brain with rules, commands, and earned gotchas</li>
-          <li><strong>Domain guidances</strong> &mdash; AI safety, database patterns, testing strategy (loaded on demand, not always)</li>
-          <li><strong>Specialized agents</strong> &mdash; backend, docs, and a domain template</li>
-          <li><strong>Agent memory</strong> &mdash; persistent knowledge that survives across sessions</li>
-          <li><strong>Workflow skills</strong> &mdash; brainstorm, TDD, verify, plan, execute, debug, review, deploy</li>
-          <li><strong>Visual architecture diagrams</strong> &mdash; <code>/visualize-project</code> auto-generates tiered Mermaid diagrams (module overview, data flow, route tree, ER diagram, service topology) scored by project complexity</li>
+          <li><strong>AGENTS.md</strong> &mdash; project brain with rules, commands, and earned gotchas, read by every tool</li>
+          <li><strong>Domain guidances</strong> &mdash; AI safety, architectural decisions, database patterns, session hygiene, testing strategy, unattended agents (loaded on demand, not always)</li>
+          <li><strong>Specialized agents</strong> &mdash; backend, docs, and two domain templates</li>
+          <li><strong>Agent memory</strong> &mdash; empty scaffold directories, ready to fill in as you work</li>
+          <li><strong>Skills</strong> &mdash; pulled live from the <a href="https://github.com/stylusnexus/agent-plugins">agent-plugins marketplace</a> instead of a fixed bundle that goes stale</li>
           <li><strong>Automated hooks</strong> &mdash; context injection, test guards, coverage checks</li>
         </ul>
       </div>
@@ -320,33 +318,13 @@
     <hr class="divider" />
 
     <h2 class="section-title">Curious to know more?</h2>
-    <p class="section-sub">The full starter bundles patterns from two companion guides. Each one goes deep on its half of the workflow.</p>
+    <p class="section-sub">Full Starter and agent-plugins are the two living pieces. (The two starters this repo replaced &mdash; agent-starter and test-starter &mdash; are archived.)</p>
 
-    <div class="card-grid">
-      <a href="https://stylusnexus.github.io/shipping-with-agents/" class="card">
-        <div class="card-label guide">Guide</div>
-        <h3>Shipping with Agents</h3>
-        <p>The development workflow. CLAUDE.md architecture, domain agents, persistent memory, automated hooks, skill composition, multi-agent orchestration, and experiment-driven development.</p>
-      </a>
-      <a href="https://stylusnexus.github.io/testing-with-agents/" class="card">
-        <div class="card-label guide">Guide</div>
-        <h3>Testing with Agents</h3>
-        <p>The testing workflow. AI mock fixtures, auth and profile mocking, visual verification, the verify loop, AI-powered UX review, experiment-as-test, and tiered CI integration.</p>
-      </a>
-      <a href="https://github.com/stylusnexus/agent-starter" class="card">
-        <div class="card-label starter">Starter Repo</div>
-        <h3>Agent Starter</h3>
-        <p>Fork-ready development infrastructure. CLAUDE.md, 6 agents, 11 skills, 4 hooks, 3 guidances, and agent memory directories. Companion to Shipping with Agents.</p>
-      </a>
-      <a href="https://github.com/stylusnexus/test-starter" class="card">
-        <div class="card-label starter">Starter Repo</div>
-        <h3>Test Starter</h3>
-        <p>Fork-ready testing infrastructure. Playwright E2E, AI mocks, profile mocking, visual baselines, verify loop, experiment scripts, and 3 CI workflows. Companion to Testing with Agents.</p>
-      </a>
+    <div class="card-grid" style="grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto;">
       <a href="https://github.com/stylusnexus/agent-plugins" class="card">
         <div class="card-label starter">Marketplace</div>
         <h3>Agent Plugins</h3>
-        <p>Don't want to fork a repo? The review-merge-ship loop, evidence-before-done verification, and more ship as installable skills &mdash; the same ones this starter is built from. Works in Claude Code, Codex, and ~70 other agents.</p>
+        <p>The review-merge-ship loop, evidence-before-done verification, and dozens more skills, installable directly &mdash; the source this starter's own skill recommendations point to. Works in Claude Code, Codex, and ~70 other agents.</p>
       </a>
     </div>
 
@@ -360,7 +338,7 @@
       <div class="setup-card">
         <h4>Claude Code</h4>
         <code>CLAUDE-SETUP.md</code>
-        <p>Plugins, hooks, skills, agent memory</p>
+        <p>Marketplace, hooks, agents, memory</p>
       </div>
       <div class="setup-card">
         <h4>Codex</h4>
@@ -375,7 +353,7 @@
     </div>
 
     <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
-      Using a different tool? The patterns are universal. MCP servers work everywhere. Read the <a href="https://stylusnexus.github.io/shipping-with-agents/#claude-md" style="color: var(--accent); text-decoration: none;">adapter callouts</a> in the guides for translations.
+      Using a different tool? The patterns are universal and MCP servers work everywhere &mdash; read <code>SETUP.md</code> for a tool-agnostic runbook.
     </p>
 
     <!-- Footer -->

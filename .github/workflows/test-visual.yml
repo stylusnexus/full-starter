@@ -12,12 +12,19 @@ on:
   workflow_dispatch:
   # pull_request:       # Uncomment for auto-trigger on UI changes
   #   branches: [main]
-  #   paths:            # Only run when UI files change
-  #     - 'src/components/**'
-  #     - 'src/app/**'
+  #   paths:            # Only run when UI files change — see CI-STRATEGY.md's
+  #     - 'src/components/**'  # note on required checks + path filters before
+  #     - 'src/app/**'          # promoting this to a required branch-protection check
   #     - '**/*.css'
   #     - '**/*.scss'
   #     - 'e2e/suite/visual.spec.ts'
+
+concurrency:
+  group: visual-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   visual:
@@ -29,10 +36,17 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
-      - run: npm ci
+      - run: npm ci --ignore-scripts
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
       - run: npx playwright install chromium
 
       # Uncomment and adjust for your app:

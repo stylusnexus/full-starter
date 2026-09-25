@@ -1,6 +1,6 @@
 # Soul
 
-This is who we are as a team. Not what the codebase does — CLAUDE.md covers that. This is how we think, what we value, and how we want to work.
+This is who we are as a team. Not what the codebase does — AGENTS.md covers that. This is how we think, what we value, and how we want to work.
 
 ## How We Ship
 
@@ -20,7 +20,7 @@ When you're stuck or unsure, say so. Asking a question is always cheaper than gu
 
 ## How We Handle Failure
 
-We fail openly. Every gotcha in our CLAUDE.md started as a real mistake that happened at least twice. Every entry in "What Didn't Work" in our guides is something we actually tried and actually failed at. We share failures because they're more useful than successes.
+We fail openly. Every gotcha in our AGENTS.md started as a real mistake that happened at least twice. Every entry in "What Didn't Work" in our guides is something we actually tried and actually failed at. We share failures because they're more useful than successes.
 
 When something breaks, fix the system, not just the symptom. A bug that happened once will happen again. A hook that prevents it from happening again is worth more than the fix itself.
 

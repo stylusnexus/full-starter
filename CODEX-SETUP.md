@@ -12,32 +12,17 @@ This starter includes development + testing infrastructure. This setup guide hel
 
 ## Setup Steps
 
-### Step 1: Create AGENTS.md
+### Step 1: Customize AGENTS.md
 
-Codex uses `AGENTS.md` instead of `CLAUDE.md`. Create one at your project root with:
+Codex's native convention is `AGENTS.md`, and this starter already ships one at the
+project root — `CLAUDE.md` is just a one-line pointer to it, so Codex users read the
+same file Claude Code users edit. Nothing to create or transfer; fill in `AGENTS.md`
+directly:
 
-```markdown
-# AGENTS.md
-
-## Project Overview
-[What the app does, 2 sentences]
-
-## Tech Stack
-[Framework, database, hosting]
-
-## Commands
-- `npm run dev` — start dev server
-- `npm run build` — production build
-- `npm test` — run smoke tests
-
-## Rules
-- [3-5 critical rules from CLAUDE.md]
-
-## Gotchas
-- [3-5 known issues from CLAUDE.md]
-```
-
-Transfer the content from `CLAUDE.md` into this format.
+- **Project Overview** — what the app does, 2 sentences
+- **Development Commands** — uncomment and adjust the `npm run dev`/`build`/`test`/`lint` block
+- **Critical Rules** — uncomment 3-5 that apply, or add your own
+- **Common Gotchas** — fill in as you find them
 
 ### Step 2: Configure Testing
 
@@ -48,18 +33,29 @@ The `e2e/` directory contains Playwright testing infrastructure. Adapt it:
 - `e2e/pages/sample-page.ts` — replace selectors with your UI elements
 - `e2e/auth.setup.ts` — configure for your auth system or use bypass mode
 
-### Step 3: Install Codex Plugins
+### Step 3: Install Skills from agent-plugins
 
-Browse the Codex plugin directory for integrations:
+Full Starter doesn't bundle skills as static files — this starter's workflow skills
+(TDD, verify, deploy, review-and-ship, and the rest) come from the agent-plugins
+marketplace, which publishes real Codex plugin manifests:
 
 ```
-# Open plugin directory
-codex plugins
+codex plugin marketplace add stylusnexus/agent-plugins
+codex plugin add ship-pipeline@stylus-nexus       # daily verify → review → merge loop
+codex plugin add hardening@stylus-nexus           # pre-launch security gates
+```
 
-# Useful plugins:
-# - GitHub (PR management, issues)
-# - Slack (team communication)
-# - Your CI/CD platform
+Codex reads its own index at `.agents/plugins/marketplace.json` inside agent-plugins —
+same marketplace, different schema from Claude Code's. Invoke installed skills the
+Codex way: `@ship-pipeline` or `/skills`. See the
+[agent-plugins README](https://github.com/stylusnexus/agent-plugins#install) for the
+full pack list.
+
+Also browse the Codex plugin directory for other integrations:
+
+```
+codex plugins
+# Useful: GitHub (PR management, issues), Slack, your CI/CD platform
 ```
 
 ### Step 4: Set Up MCP Servers
@@ -86,5 +82,4 @@ The `.github/workflows/` directory has GitHub Actions for testing. Update:
 
 ## Learn More
 
-- [Shipping with Agents](https://stylusnexus.github.io/shipping-with-agents/) — development patterns
-- [Testing with Agents](https://stylusnexus.github.io/testing-with-agents/) — testing patterns
+- [agent-plugins](https://github.com/stylusnexus/agent-plugins) — the marketplace this starter's skills come from

@@ -29,6 +29,6 @@ You have persistent memory at `.claude/agent-memory/backend-engineer/`.
 **After completing**: Update memory with new domain-specific insights worth preserving.
 
 **Save**: Domain patterns, key file paths, recurring issues, validated approaches.
-**Skip**: Session-specific context, info already in CLAUDE.md, general knowledge.
+**Skip**: Session-specific context, info already in AGENTS.md, general knowledge.
 
 Keep `MEMORY.md` under 200 lines. Create topic files for details, link from index.

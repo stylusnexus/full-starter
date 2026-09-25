@@ -1,0 +1,41 @@
+# Release Please — automated CHANGELOG + version bump PRs
+#
+# Optional. Watches commits on main (once enabled) and keeps a single
+# "release PR" up to date with every conventional-commit-worthy change since
+# the last release; merging that PR bumps package.json, updates CHANGELOG.md,
+# and tags a GitHub Release. Depends entirely on commitlint.yml actually being
+# enforced (or on discipline) — a commit history with no `feat`/`fix` prefixes
+# produces an empty changelog. Does NOT publish to npm; that's a separate step
+# if this fork ever needs it.
+#
+# Default: manual trigger only (workflow_dispatch), like everything else here.
+# Uncomment 'push' to let it run automatically — this is the one workflow in
+# this repo where automatic is arguably the *better* default: it never builds
+# or tests anything, it just opens/updates a PR, so the cost is near zero and
+# the value (a changelog that's never stale) only shows up if it runs on
+# every push.
+#
+# Cost note: ~10-20 seconds per run.
+# Config: release-please-config.json, .release-please-manifest.json
+
+name: Release Please
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

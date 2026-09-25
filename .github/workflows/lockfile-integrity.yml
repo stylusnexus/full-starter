@@ -1,0 +1,42 @@
+# Lockfile Integrity — supply-chain sanity check
+#
+# npm only — scripts/lockfile-integrity.sh reads package-lock.json directly.
+# If this fork uses pnpm, yarn, or bun, either delete this workflow or adapt
+# the script to that lockfile's format; there's no generic implementation here.
+#
+# Default: manual trigger only (workflow_dispatch). Runs locally too —
+# this workflow just wires scripts/lockfile-integrity.sh into GitHub Actions
+# so the same check runs somewhere that isn't your machine.
+# Uncomment 'pull_request' when ready for automatic CI.
+#
+# Cost note: ~1 GitHub Actions minute per run.
+# Free tier: 2,000 min/month. See .github/workflows/CI-STRATEGY.md.
+
+name: Lockfile Integrity
+
+on:
+  workflow_dispatch:    # Manual trigger — click "Run workflow" in GitHub UI
+  # pull_request:       # Uncomment for automatic runs when the lockfile changes
+  #   branches: [main]
+  #   paths:
+  #     - 'package-lock.json'
+
+concurrency:
+  group: lockfile-integrity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - run: ./scripts/lockfile-integrity.sh

@@ -1,0 +1,46 @@
+# Commit Lint — enforces the Conventional Commits format on PR titles
+#
+# GitHub-only by design: a PR title doesn't exist until a PR is opened, so
+# there's no local equivalent to run before pushing. CONTRIBUTING.md already
+# documents the Conventional Commits requirement; this is what enforces it.
+#
+# Default: manual trigger only (workflow_dispatch), consistent with every
+# other workflow here. Uncomment 'pull_request' below if you'd rather it run
+# automatically — it's the cheapest workflow in this repo (a lint over a
+# single string, no checkout/install/build), so the minutes cost of making it
+# automatic is close to zero if you do turn it on.
+#
+# Cost note: ~10-20 seconds per run.
+
+name: Commit Lint
+
+on:
+  workflow_dispatch:
+  # pull_request:
+  #   types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  title:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Lint PR title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [ -z "$TITLE" ]; then
+            echo "No pull_request context — run this via a PR event, or pass a title manually for testing."
+            exit 0
+          fi
+          # type(scope): summary — scope optional, summary lowercase, no trailing period.
+          if ! printf '%s' "$TITLE" | grep -qE '^(feat|fix|chore|docs|test|refactor|perf|ci)(\([a-z0-9-]+\))?: [a-z].*[^.]$'; then
+            echo "PR title doesn't match Conventional Commits: type(scope): summary"
+            echo "Got: $TITLE"
+            echo "Types: feat fix chore docs test refactor perf ci"
+            exit 1
+          fi
+          echo "OK: $TITLE"

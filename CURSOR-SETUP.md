@@ -14,7 +14,9 @@ This starter includes development + testing infrastructure built for Claude Code
 
 ### Step 1: Create .cursorrules
 
-Cursor uses `.cursorrules` instead of `CLAUDE.md`. Create one at your project root:
+The project brain lives in `AGENTS.md` at the root (Claude Code's `CLAUDE.md` is just a
+pointer to it). Cursor uses `.cursorrules` instead — create one at your project root by
+transferring from `AGENTS.md`:
 
 ```markdown
 # Project Rules
@@ -31,17 +33,19 @@ Cursor uses `.cursorrules` instead of `CLAUDE.md`. Create one at your project ro
 - `npm test` — run smoke tests
 
 ## Critical Rules
-[Transfer the critical rules from CLAUDE.md]
+[Transfer the critical rules from AGENTS.md]
 
 ## Gotchas
-[Transfer the gotchas from CLAUDE.md]
+[Transfer the gotchas from AGENTS.md]
 
 ## Domain Knowledge
 When working on specific areas, reference these docs:
-- Auth/middleware: read `.claude/guidances/auth-security.md`
+- Architectural decisions: read `.claude/guidances/architectural-decisions.md`
 - Database/migrations: read `.claude/guidances/database-patterns.md`
 - AI/prompts: read `.claude/guidances/ai-safety.md`
 - Testing: read `.claude/guidances/testing-strategy.md`
+- Long sessions: read `.claude/guidances/session-hygiene.md`
+- Unattended/background runs: read `.claude/guidances/unattended-agents.md`
 ```
 
 ### Step 2: Install Marketplace Plugins
@@ -63,15 +67,20 @@ The `e2e/` directory works with Cursor out of the box (Playwright is tool-agnost
 - `e2e/pages/sample-page.ts` — replace selectors with your UI elements
 - `e2e/auth.setup.ts` — configure for your auth system
 
-### Step 4: Workflow Skills as Docs
+### Step 4: Install Skills from agent-plugins
 
-Cursor doesn't have slash-command skills like Claude Code. But you can use the skill files as workflow docs:
+Cursor doesn't have slash-command skills like Claude Code, but the
+[Skills CLI](https://github.com/vercel-labs/skills) writes agent-plugins skills straight
+into Cursor's own skills directory — no marketplace step, one command does both:
 
-- Tell Cursor: "Follow the process in `.claude/skills/brainstorm.md`" before creative work
-- Tell Cursor: "Follow `.claude/skills/tdd.md`" for test-driven development
-- Tell Cursor: "Run `./scripts/verify.sh`" before claiming work is done
+```bash
+npx skills add stylusnexus/agent-plugins -a cursor              # choose interactively
+npx skills add stylusnexus/agent-plugins -a cursor --skill '*'  # install all of them
+```
 
-The workflow discipline transfers even without the automation.
+That covers TDD, verify, deploy, review-and-ship, and the rest. For anything not
+installed yet: "Run `./scripts/verify.sh`" before claiming work is done still applies
+regardless of skill tooling.
 
 ### Step 5: Use @References for Context
 
@@ -87,5 +96,4 @@ Same as other tools — update `.github/workflows/` with your build/start comman
 
 ## Learn More
 
-- [Shipping with Agents](https://stylusnexus.github.io/shipping-with-agents/) — development patterns (see purple adapter callouts)
-- [Testing with Agents](https://stylusnexus.github.io/testing-with-agents/) — testing patterns
+- [agent-plugins](https://github.com/stylusnexus/agent-plugins) — the marketplace this starter's skills come from
