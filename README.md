@@ -9,6 +9,18 @@ The complete development + testing infrastructure in one repo. Started as the me
 
 By [Stylus Nexus](https://github.com/stylusnexus).
 
+## Prerequisites
+
+| Tool | Why | Get it |
+|---|---|---|
+| **Node** (version in `.nvmrc`) | Runs everything — tests, hooks, scripts | nvm, fnm, volta, or your OS's installer |
+| **npm** | Ships with Node | — |
+| **git** | You're forking a repo | your OS's installer |
+| **jq** | 4 hooks parse tool-call JSON with it (`domain-context-loader.sh` and others) | `apt install jq` / `brew install jq` / `choco install jq` / `scoop install jq` |
+
+Optional: **gitleaks**, for `scripts/security-scan.sh`'s local secret scan — falls back to a
+grep-based check if it isn't installed. CI installs its own copy either way.
+
 ## Quick Start
 
 Pick your AI coding tool and point it at the setup file:
