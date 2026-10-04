@@ -11,7 +11,7 @@ Read CLAUDE-SETUP.md and set up my project.
 This starter includes a complete development + testing infrastructure. When you run this setup, Claude will:
 
 1. **Scan your codebase** to understand your tech stack, project structure, and conventions
-2. **Customize AGENTS.md** with your project's overview, dev commands, and initial gotchas — `CLAUDE.md` just points there, leave it alone
+2. **Customize AGENTS.md** with your project's overview, dev commands, and initial gotchas — `CLAUDE.md` just points there, leave it alone. Delete the "About This Template" section at the top of `AGENTS.md` once setup is done; it describes the starter, not your project
 3. **Update guidances** to match your domain areas (auth, database, AI, etc.)
 4. **Configure agent definitions** with your project-specific context
 5. **Wire up testing** — update route patterns in mocks, selectors in page objects, auth config
@@ -38,6 +38,7 @@ Install `codebase-intel@stylus-nexus` from the agent-plugins marketplace (see Re
 - Update `e2e/mocks/ai-generation-mock.ts` — replace `**/api/generate` with your actual AI endpoint(s)
 - Update `e2e/mocks/profile-mock.ts` — adjust `TIER_DEFAULTS` to match your subscription tiers and `**/api/user/profile` to your profile API route
 - Update `e2e/pages/sample-page.ts` — replace selectors with your actual UI elements
+- Update `e2e/app-contract.ts` — fill it in using the "Fill in the App Contract" rules in `SETUP.md` (ask the user only whether people sign in; read the rest from the code)
 - Update `e2e/auth.setup.ts` — adjust login form selectors or configure bypass mode
 - Create initial fixture files by documenting expected API response shapes in `e2e/fixtures/ai-responses/`
 
@@ -49,7 +50,7 @@ Install `codebase-intel@stylus-nexus` from the agent-plugins marketplace (see Re
 
 ### Step 4: CI Workflows
 
-- In `.github/workflows/test-smoke.yml`, uncomment and adjust the build/start steps for your app
+- In `.github/workflows/test-smoke.yml`, uncomment and adjust the build/start steps for your app once it has a build and start command. Until then, leave them commented (don't add commands that don't work yet)
 - Read `.github/workflows/CI-STRATEGY.md` to choose your testing tier (Minimal/Mid/Maximal)
 
 ### Step 5: Verify

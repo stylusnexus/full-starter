@@ -48,15 +48,18 @@ export default defineConfig({
     },
   ],
 
-  // Auto-starts your dev server for local runs; in CI, point BASE_URL at an
-  // already-running deployment instead and this is skipped via reuseExistingServer.
-  webServer: {
-    command: 'npm run dev',
-    url: process.env.BASE_URL || 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-    env: {
-      ...(process.env.E2E_BYPASS_AUTH ? { E2E_BYPASS_AUTH: process.env.E2E_BYPASS_AUTH } : {}),
-    },
-  },
+  // No BASE_URL: start your dev server for local runs ("npm run dev").
+  // BASE_URL set: the app is already running (a deployment, or a server your
+  // CI job started), so Playwright starts nothing.
+  webServer: process.env.BASE_URL
+    ? undefined
+    : {
+        command: 'npm run dev',
+        url: 'http://localhost:3000',
+        reuseExistingServer: true,
+        timeout: 120 * 1000,
+        env: {
+          ...(process.env.E2E_BYPASS_AUTH ? { E2E_BYPASS_AUTH: process.env.E2E_BYPASS_AUTH } : {}),
+        },
+      },
 });

@@ -17,7 +17,8 @@ This starter includes development + testing infrastructure. This setup guide hel
 Codex's native convention is `AGENTS.md`, and this starter already ships one at the
 project root — `CLAUDE.md` is just a one-line pointer to it, so Codex users read the
 same file Claude Code users edit. Nothing to create or transfer; fill in `AGENTS.md`
-directly:
+directly, and delete its "About This Template" section when you're done (it describes the
+starter, not your project):
 
 - **Project Overview** — what the app does, 2 sentences
 - **Development Commands** — uncomment and adjust the `npm run dev`/`build`/`test`/`lint` block
@@ -31,6 +32,7 @@ The `e2e/` directory contains Playwright testing infrastructure. Adapt it:
 - `e2e/mocks/ai-generation-mock.ts` — change route patterns to your API endpoints
 - `e2e/mocks/profile-mock.ts` — adjust tier configs and profile API route
 - `e2e/pages/sample-page.ts` — replace selectors with your UI elements
+- `e2e/app-contract.ts` — fill it in using the "Fill in the App Contract" rules in `SETUP.md` (ask the user only whether people sign in; read the rest from the code)
 - `e2e/auth.setup.ts` — configure for your auth system or use bypass mode
 
 ### Step 3: Install Skills from agent-plugins

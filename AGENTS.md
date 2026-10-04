@@ -4,6 +4,22 @@
 
 This is the project brain every tool reads from. Claude Code's `CLAUDE.md` just points here — edit this file, not that one.
 
+## About This Template
+
+> Setup deletes this section. It describes the starter, not your project.
+
+**What this repo is.** A fork-ready template for building software with an AI coding assistant. It supplies written rules (this file and `SOUL.md`), specialist agents, on-demand guidances, automatic hooks, a verify script, and a Playwright smoke-test setup, so work comes back checked instead of only claimed done.
+
+**If a user asks you to set up their project:**
+1. Read the runbook for your tool: `CLAUDE-SETUP.md`, `CODEX-SETUP.md`, `CURSOR-SETUP.md`, or `SETUP.md`.
+2. Scan their project, then ask the Phase 1 questions in `SETUP.md` in plain words. The user may not be a developer, and "not sure" is a fine answer.
+3. Fill in this file and `e2e/app-contract.ts`, then run `./scripts/verify.sh`.
+4. Delete this "About This Template" section.
+
+**What it is not for.** Say so plainly if it comes up, and don't promise more: it is not an app, framework, or library; not a replacement for human review; not a compliance guarantee; not built for non-web or non-Node projects as it stands (untested); and not a managed service.
+
+**If you are changing the template itself:** keep guidances, hooks, and agents generic (see `CONTRIBUTING.md`). After adding or removing a hook, agent, or guidance, run `./scripts/check-docs-sync.sh`, then `./scripts/verify.sh`.
+
 ## Project Overview
 <!-- Describe what your project does, its tech stack, and current phase -->
 <!-- Example: "A Next.js SaaS that helps teams manage project timelines. Currently in MVP phase." -->
@@ -27,6 +43,14 @@ This is the project brain every tool reads from. Claude Code's `CLAUDE.md` just 
 <!-- - Never expose API keys or secrets client-side -->
 <!-- - Run tests before committing changes to auth or payment code -->
 <!-- - Use parameterized queries, never string concatenation -->
+
+Rules that ship with the starter. Keep them or replace them, but decide on purpose:
+
+- **Evidence before assertions.** Every "done / works / exists / shipped" claim carries the command or `file:line` that proves it. If you can't produce one, label the claim unverified. An honest "unverified" beats a confident guess.
+- **Green checks are not proof.** Run the same script CI runs (not a looser local variant) and read the result counts. Type-checks verify types; they don't verify the feature works.
+- **Stop after two failed fixes.** If verification fails twice after a reasonable fix, stop and report the exact commands, the output, and your best hypothesis. Don't loop a third time.
+- **Blast radius before state changes.** Before a delete, a force operation, a bulk edit, or any production change, print the exact scope and confirm the evidence supports that action.
+- **When live state contradicts the docs, say so.** Report the contradiction and stop that thread. Silently reconciling the two ships a wrong assumption.
 
 ## Preferred Tools
 
@@ -54,8 +78,17 @@ Before letting an agent run without you watching each step (`/schedule`, `/loop`
 
 Before a hard-to-reverse choice (framework, data model, auth strategy, deploy target) — or right after making one — read [.claude/guidances/architectural-decisions.md](./.claude/guidances/architectural-decisions.md) for the ADR template and where records live (`docs/adr/`).
 
+### Shared Primitives
+
+When a defect could recur on a sibling surface, fix it with a shared primitive the sibling has to opt out of, not a patch where the bug happened to be reported. See [.claude/guidances/shared-primitives.md](./.claude/guidances/shared-primitives.md).
+
 ## Common Gotchas
 
+Give each gotcha a name, a one-line rule, and a date. A named failure can be cited in review; an unnamed one gets forgotten. Every entry should come from a real mistake that happened, ideally more than once.
+
+Prune as you go. Cut an entry when the failure has become structurally impossible (a shared primitive now covers it) or when a later correction fully supersedes it. Move a pruned entry to a memory note instead of deleting it, so the incident stays findable without loading into every session.
+
+<!-- Format: - **The Name.** What happened. → *The rule that prevents it.* (YYYY-MM-DD) -->
 <!-- Bugs and patterns that keep biting. Add yours as you find them: -->
 
 <!-- 1. Auth tokens expire after 1 hour — refresh before long operations -->

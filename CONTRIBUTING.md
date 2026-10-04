@@ -29,8 +29,9 @@ npm install
    repo is meant to be forked into many different projects, not tuned to one.
 3. **Verify it.** Run `./scripts/verify.sh`. If you touched the Playwright infra, run
    the relevant suite under `e2e/suite/`.
-4. **Update counts.** If you added or removed an agent, a guidance, or a top-level file,
-   check `README.md` and `docs/index.html` for stats that now need to match.
+4. **Update counts.** If you added or removed an agent, a hook, or a guidance, update
+   `README.md` and `docs/index.html`, then run `./scripts/check-docs-sync.sh`. It fails
+   if the numbers or the guidance list no longer match the repo.
 5. **Open a pull request** against `main`.
 
 ### Commit Messages

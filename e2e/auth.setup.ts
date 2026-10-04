@@ -9,6 +9,7 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from 'fs';
+import { appContract } from './app-contract';
 
 const authDir = path.join(__dirname, '../.playwright-auth');
 const authFile = path.join(authDir, 'user.json');
@@ -18,11 +19,13 @@ if (!fs.existsSync(authDir)) {
 }
 
 setup('authenticate', async ({ page }) => {
-  const bypassAuth = process.env.E2E_BYPASS_AUTH === '1';
+  const loginPath = appContract.loginPath;
+  // An app with no login page (loginPath: null in app-contract.ts) has nothing to sign in to.
+  const bypassAuth = process.env.E2E_BYPASS_AUTH === '1' || loginPath === null;
 
   if (bypassAuth) {
     console.log('[Auth] Bypass mode — skipping authentication');
-    await page.goto('/');
+    await page.goto(appContract.homePath);
     await page.waitForLoadState('load');
     await page.context().storageState({ path: authFile });
     return;
@@ -39,14 +42,14 @@ setup('authenticate', async ({ page }) => {
   }
 
   console.log('[Auth] Logging in with test credentials...');
-  await page.goto('/login');
+  await page.goto(loginPath as string);
   await page.waitForLoadState('domcontentloaded');
 
   await page.locator('input[type="email"]').fill(email);
   await page.locator('input[type="password"]').fill(password);
   await page.locator('button[type="submit"]').click();
 
-  await page.waitForURL(/\/(dashboard|home|app)/, { timeout: 10000 });
+  await page.waitForURL(appContract.postLoginUrl, { timeout: 10000 });
   console.log('[Auth] Login successful');
 
   await page.context().storageState({ path: authFile });
