@@ -88,7 +88,10 @@ The smoke tests check what `e2e/app-contract.ts` says the app has. Fill that fil
 | `loginPath` | Yes to Q7: find the sign-in page in the code (a route or page named `login`, `sign-in`, `signin`, or `auth`) and use its path. Check that it has an email input. No to Q7, or sign-in only through a button like "Continue with Google": `null`. |
 | `healthPath` | Search the code for a route named `health`, `healthz`, `status`, or `ping`. Found: use its path. Not found: `null`. |
 | `securityHeaders` | Search for where the app sets response headers (`headers()` in `next.config.*`, middleware, `helmet`). Found: copy the exact header values it sets, in lowercase names. Not found: `null`. |
+| `postLoginUrl` | Only if `loginPath` is set. Where a successful sign-in lands (for example `/` or `/projects`), as a regular expression. The default accepts `/dashboard`, `/home`, or `/app`; leave it if the app lands on one of those. |
 | `checkNav` | `true` if the home page markup has a `<nav>` with links, otherwise `false`. |
+
+If the app has a sign-in page, the smoke tests need either a test account (export `TEST_EMAIL` and `TEST_PASSWORD`) or `E2E_BYPASS_AUTH=1` for local runs. CI sets the bypass already. Tell the user which one you used.
 
 **"Not sure" is a fine answer.** When the user doesn't know and the code doesn't say, leave the field `null`. A skipped check is honest; a guessed one fails for reasons the user can't diagnose. Don't invent a login page or health route to make a test pass.
 
@@ -98,7 +101,7 @@ In your report to the user, list every field you left `null` as "not checked yet
 
 ## Phase 2: Generate AGENTS.md
 
-Create `AGENTS.md` in the project root — the project brain every tool reads from. The starter ships one with an "About This Template" section at the top; delete that section, since it describes the starter, not the user's project. (If
+Fill in `AGENTS.md` in the project root — the project brain every tool reads from. If one exists (the starter ships one), edit it in place: keep its Critical Rules and Preferred Tools sections and replace the placeholders. Use the template below only when none exists. The starter's file has an "About This Template" section at the top; delete that section, since it describes the starter, not the user's project. (If
 `CLAUDE.md` doesn't already exist as a one-line pointer to it, add one: `Read
 [AGENTS.md](./AGENTS.md).` Don't duplicate content into both files.) Adapt the template
 below based on Phase 1 findings. Only include sections that are relevant. Don't add

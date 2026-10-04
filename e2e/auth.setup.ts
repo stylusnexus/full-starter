@@ -19,7 +19,9 @@ if (!fs.existsSync(authDir)) {
 }
 
 setup('authenticate', async ({ page }) => {
-  const bypassAuth = process.env.E2E_BYPASS_AUTH === '1';
+  const loginPath = appContract.loginPath;
+  // An app with no login page (loginPath: null in app-contract.ts) has nothing to sign in to.
+  const bypassAuth = process.env.E2E_BYPASS_AUTH === '1' || loginPath === null;
 
   if (bypassAuth) {
     console.log('[Auth] Bypass mode — skipping authentication');
@@ -39,15 +41,8 @@ setup('authenticate', async ({ page }) => {
     );
   }
 
-  if (appContract.loginPath === null) {
-    throw new Error(
-      'Real-auth mode needs a login page, but e2e/app-contract.ts sets loginPath to null.\n' +
-      'Set E2E_BYPASS_AUTH=1, or set loginPath.'
-    );
-  }
-
   console.log('[Auth] Logging in with test credentials...');
-  await page.goto(appContract.loginPath);
+  await page.goto(loginPath as string);
   await page.waitForLoadState('domcontentloaded');
 
   await page.locator('input[type="email"]').fill(email);

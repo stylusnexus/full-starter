@@ -4,7 +4,8 @@
 # docs/index.html no longer match the repo.
 #
 # Checks the hook, agent, and guidance counts and that every guidance is
-# named in both files. Run it after adding or removing a hook, agent, or
+# named in both files. A number passes if it appears anywhere in the file, so
+# it catches a missing or changed count, not every stale mention. Run it after adding or removing a hook, agent, or
 # guidance (CONTRIBUTING.md, step 4). Not part of verify.sh, so forks
 # don't inherit it by default.
 #

@@ -44,6 +44,7 @@ When working on specific areas, reference these docs:
 - Database/migrations: read `.claude/guidances/database-patterns.md`
 - AI/prompts: read `.claude/guidances/ai-safety.md`
 - Testing: read `.claude/guidances/testing-strategy.md`
+- Shared fixes (a bug that could recur elsewhere): read `.claude/guidances/shared-primitives.md`
 - Long sessions: read `.claude/guidances/session-hygiene.md`
 - Unattended/background runs: read `.claude/guidances/unattended-agents.md`
 ```

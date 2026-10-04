@@ -52,7 +52,7 @@ grep-based check if it isn't installed. CI installs its own copy either way.
 2. **Open the clone in your AI tool** (Claude Code, Codex, Cursor, or another).
 3. **Paste the one-line command for your tool** from the table below.
 4. **Answer the questions it asks.** "Not sure" is a fine answer. It writes your `AGENTS.md` and fills in `e2e/app-contract.ts`.
-5. **Run `./scripts/verify.sh`.** Until your app has a `dev` script, expect `1 passed, 1 skipped`. The first browser test run also needs `npx playwright install chromium`.
+5. **Run `./scripts/verify.sh`.** Until your app has a `dev` script, expect `1 passed, 1 skipped`. The security scan's dependency audit needs internet. The first browser test run also needs `npx playwright install chromium`.
 
 ## Quick Start
 

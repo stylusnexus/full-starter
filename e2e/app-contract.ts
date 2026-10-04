@@ -1,8 +1,8 @@
 /**
  * What the smoke tests assume about YOUR app. Edit this file; leave the specs alone.
  *
- * Set an optional entry to `null` (or `false`) when your app doesn't have that
- * feature. The matching test is then skipped, with the reason in the report.
+ * Set an optional entry to `null` (`checkNav` takes `false`) when your app doesn't
+ * have that feature. The matching test is then skipped, with the reason in the report.
  * An entry you leave set is a promise: if the route is missing, the test fails.
  */
 export const appContract = {
