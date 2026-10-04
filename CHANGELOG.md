@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0](https://github.com/stylusnexus/full-starter/compare/full-starter-v1.0.0...full-starter-v1.1.0) (2026-10-04)
+## [1.1.0](https://github.com/stylusnexus/full-starter/compare/v1.0.0...v1.1.0) (2026-10-04)
 
 
 ### Features
