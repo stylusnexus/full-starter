@@ -38,6 +38,7 @@ Install `codebase-intel@stylus-nexus` from the agent-plugins marketplace (see Re
 - Update `e2e/mocks/ai-generation-mock.ts` — replace `**/api/generate` with your actual AI endpoint(s)
 - Update `e2e/mocks/profile-mock.ts` — adjust `TIER_DEFAULTS` to match your subscription tiers and `**/api/user/profile` to your profile API route
 - Update `e2e/pages/sample-page.ts` — replace selectors with your actual UI elements
+- Update `e2e/app-contract.ts` — set the routes and security headers the smoke tests expect; use `null` for anything your app doesn't have (no login page, no health route)
 - Update `e2e/auth.setup.ts` — adjust login form selectors or configure bypass mode
 - Create initial fixture files by documenting expected API response shapes in `e2e/fixtures/ai-responses/`
 

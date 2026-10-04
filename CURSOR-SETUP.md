@@ -65,6 +65,7 @@ The `e2e/` directory works with Cursor out of the box (Playwright is tool-agnost
 - `e2e/mocks/ai-generation-mock.ts` — change route patterns to your API endpoints
 - `e2e/mocks/profile-mock.ts` — adjust tier configs and profile API route
 - `e2e/pages/sample-page.ts` — replace selectors with your UI elements
+- `e2e/app-contract.ts` — set the routes and security headers the smoke tests expect; use `null` for anything your app doesn't have
 - `e2e/auth.setup.ts` — configure for your auth system
 
 ### Step 4: Install Skills from agent-plugins
