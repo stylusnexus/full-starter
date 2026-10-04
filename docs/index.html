@@ -8,14 +8,14 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Ship and Test with AI Agents" />
-  <meta property="og:description" content="Fork-ready infrastructure for AI-assisted development. Agents, hooks, memory, mocks, visual verification, and CI — plus the agent-plugins marketplace for skills — from a production team." />
+  <meta property="og:description" content="A ready-to-fork project template for building with an AI coding assistant: written rules, specialist helpers, automatic checks, and a test setup. Tell your assistant to set it up and it fits itself to your project." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://stylusnexus.github.io/full-starter/" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Ship and Test with AI Agents" />
-  <meta name="twitter:description" content="Complete dev + testing infrastructure for AI coding assistants. 96 files, 3 tool-specific setup docs. Fork and go." />
+  <meta name="twitter:description" content="A ready-to-fork project template for building with an AI coding assistant: rules, helpers, checks, and tests. Fork it, then tell your assistant to set it up." />
 
   <!-- SEO -->
   <link rel="canonical" href="https://stylusnexus.github.io/full-starter/" />
@@ -208,6 +208,11 @@
       margin-top: 0.5rem;
     }
 
+    .steps { max-width: 640px; margin: 0 auto 2rem; padding-left: 1.5rem; }
+    .steps li { margin-bottom: 0.75rem; color: var(--text-secondary); }
+    .steps li strong { color: var(--text); }
+    .steps code { font-size: 0.85rem; background: #f1f5f9; padding: 0.15em 0.4em; border-radius: 4px; color: #b45309; }
+
     /* Stats bar */
     .stats {
       display: flex;
@@ -260,7 +265,7 @@
     <div class="hero">
       <img src="logo.png" alt="Stylus Nexus" class="hero-logo" />
       <h1>Ship and Test with <span class="accent">Agents</span></h1>
-      <p>Complete development and testing infrastructure for AI-assisted development. Agents, hooks, memory, mocks, visual verification, CI &mdash; plus the agent-plugins marketplace for skills.</p>
+      <p>A ready-to-fork project template for building software with an AI coding assistant. It gives the assistant written rules, specialist helpers, automatic safety checks, and a test setup, so its work comes back checked instead of only claimed done.</p>
       <div class="hero-sub">By <a href="https://github.com/stylusnexus">Stylus Nexus</a></div>
     </div>
 
@@ -269,7 +274,7 @@
       <a href="https://github.com/stylusnexus/full-starter" class="cta-primary">Fork the Full Starter</a>
       <div class="cta-secondary">
         96 files. 3 agents. 13 hooks. Playwright E2E. CI workflows. Skills via agent-plugins.<br>
-        Point your AI at a setup doc and go.
+        <a href="#get-started">Get started in 5 minutes &darr;</a>
       </div>
     </div>
 
@@ -328,6 +333,37 @@
       </a>
     </div>
 
+    <!-- Who it is for -->
+    <hr class="divider" />
+
+    <h2 class="section-title">Is this for you?</h2>
+    <ul class="steps">
+      <li><strong>Starting a new web app or API in Node/TypeScript?</strong> Begin with the rules, checks, and tests already in place.</li>
+      <li><strong>Adding structure to a project you already have?</strong> The setup runbook scans your project first and fills in the rules.</li>
+      <li><strong>A small team sharing one AI workflow?</strong> Everyone's assistant follows the same written rules.</li>
+    </ul>
+
+    <h3 class="section-title" style="font-size: 1.1rem;">What it is not for</h3>
+    <ul class="steps">
+      <li><strong>Not an app, framework, or library.</strong> There is no product code in it.</li>
+      <li><strong>Not a replacement for human review.</strong> The checks catch common mistakes; they don't prove code is correct or safe. The security scan is a report-only baseline.</li>
+      <li><strong>Not a compliance guarantee.</strong> Setup writes your legal and privacy limits into <code>AGENTS.md</code>. Enforcing them is up to you.</li>
+      <li><strong>Not built for non-web or non-Node projects as it stands.</strong> The tests drive a web app over HTTP, and the hooks use <code>npm</code> and <code>jq</code>. We haven't tested the Python, Rust, or Go paths.</li>
+      <li><strong>Not a managed service.</strong> Your fork is yours. Updates from us don't arrive on their own.</li>
+    </ul>
+
+    <!-- Get started -->
+    <hr class="divider" />
+
+    <h2 class="section-title" id="get-started">Get started in 5 minutes</h2>
+    <ol class="steps">
+      <li><strong>Fork and install.</strong> Fork <code>stylusnexus/full-starter</code> on GitHub, clone your fork, and run <code>npm install</code>. You need Node (the version in <code>.nvmrc</code>) and <code>jq</code>.</li>
+      <li><strong>Open the clone in your AI tool</strong> (Claude Code, Codex, Cursor, or another).</li>
+      <li><strong>Paste the one-line command for your tool</strong>, shown below.</li>
+      <li><strong>Answer the questions it asks.</strong> &ldquo;Not sure&rdquo; is a fine answer. It writes your <code>AGENTS.md</code> and fills in <code>e2e/app-contract.ts</code>.</li>
+      <li><strong>Run <code>./scripts/verify.sh</code>.</strong> Until your app has a <code>dev</code> script, expect <code>1 passed, 1 skipped</code>. The first browser test run also needs <code>npx playwright install chromium</code>.</li>
+    </ol>
+
     <!-- Setup docs -->
     <hr class="divider" />
 
@@ -338,22 +374,25 @@
       <div class="setup-card">
         <h4>Claude Code</h4>
         <code>CLAUDE-SETUP.md</code>
+        <p>Paste: <code>Read CLAUDE-SETUP.md and set up my project.</code></p>
         <p>Marketplace, hooks, agents, memory</p>
       </div>
       <div class="setup-card">
         <h4>Codex</h4>
         <code>CODEX-SETUP.md</code>
+        <p>Paste: <code>Read CODEX-SETUP.md and set up my project.</code></p>
         <p>AGENTS.md, plugins, MCP servers</p>
       </div>
       <div class="setup-card">
         <h4>Cursor</h4>
         <code>CURSOR-SETUP.md</code>
+        <p>Paste: <code>Read CURSOR-SETUP.md and set up my project.</code></p>
         <p>.cursorrules, Marketplace, @references</p>
       </div>
     </div>
 
     <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
-      Using a different tool? The patterns are universal and MCP servers work everywhere &mdash; read <code>SETUP.md</code> for a tool-agnostic runbook.
+      Using a different tool? The patterns are universal and MCP servers work everywhere &mdash; paste <code>Read SETUP.md and set up my project.</code> for a tool-agnostic runbook.
     </p>
 
     <!-- Footer -->

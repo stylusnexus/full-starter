@@ -5,9 +5,34 @@
 [![Codex](https://img.shields.io/badge/Codex-compatible-10A37F)](CODEX-SETUP.md)
 [![Cursor](https://img.shields.io/badge/Cursor-compatible-000000)](CURSOR-SETUP.md)
 
-The complete development + testing infrastructure in one repo. Started as the merge of two separate starters — [agent-starter](https://github.com/stylusnexus/agent-starter) (development) and [test-starter](https://github.com/stylusnexus/test-starter) (testing), both now archived in favor of this one. Fork and go — no manual merging required.
+A ready-to-fork project template for building software with an AI coding assistant such as Claude Code, Codex, or Cursor. It gives the assistant written rules to follow, specialist helper agents, automatic safety checks, and a test setup, so its work comes back checked instead of only claimed done.
+
+Fork it, tell your assistant to set it up, and it asks a few questions and fits the template to your project.
 
 By [Stylus Nexus](https://github.com/stylusnexus).
+
+## What This Is For
+
+**Use it when** an AI assistant does a lot of the work on your project and you want it to follow your rules, run its own checks, and stop before claiming "done" without proof.
+
+| You are... | Use it to... |
+|---|---|
+| Starting a new web app or API in Node/TypeScript | Begin with the rules, checks, and tests already in place |
+| Adding structure to a project you already have | Let the setup runbook scan your project and fill in the rules |
+| A small team sharing one AI workflow | Keep everyone's assistant on the same written rules (`AGENTS.md`) |
+
+## What This Is NOT For
+
+- **Not an app, framework, or library.** There's no product code in it.
+- **Not a replacement for human review.** The hooks and checks catch common mistakes. They don't prove code is correct or safe. The security scan is a report-only baseline, and the checklist in `SECURITY.md` still needs a person.
+- **Not a compliance guarantee.** Setup asks about legal and privacy limits and writes them into `AGENTS.md`. Enforcing them is up to you.
+- **Not built for non-web or non-Node projects as it stands.** The tests drive a web app over HTTP, and the hooks use `npm` and `jq`. The setup runbook recognizes Python, Rust, and Go projects, but we haven't tested it on them.
+- **Not a managed service.** Your fork is yours. Updates from us don't arrive on their own, so you pull them in yourself.
+
+**How it fits with our other repos:**
+- [startup-plan](https://github.com/stylusnexus/startup-plan) explains the workflow in words. Read it first if you want the why.
+- This repo (`full-starter`) is the template you fork to get that workflow set up.
+- [agent-plugins](https://github.com/stylusnexus/agent-plugins) holds the skills (review, ship, harden) you install into any project, this one included.
 
 ## Prerequisites
 
@@ -20,6 +45,14 @@ By [Stylus Nexus](https://github.com/stylusnexus).
 
 Optional: **gitleaks**, for `scripts/security-scan.sh`'s local secret scan — falls back to a
 grep-based check if it isn't installed. CI installs its own copy either way.
+
+## Get Started in 5 Minutes
+
+1. **Fork and install.** Fork `stylusnexus/full-starter` on GitHub, clone your fork, and run `npm install`. You need Node (the version in `.nvmrc`) and `jq`.
+2. **Open the clone in your AI tool** (Claude Code, Codex, Cursor, or another).
+3. **Paste the one-line command for your tool** from the table below.
+4. **Answer the questions it asks.** "Not sure" is a fine answer. It writes your `AGENTS.md` and fills in `e2e/app-contract.ts`.
+5. **Run `./scripts/verify.sh`.** Until your app has a `dev` script, expect `1 passed, 1 skipped`. The first browser test run also needs `npx playwright install chromium`.
 
 ## Quick Start
 
@@ -160,3 +193,7 @@ full-starter/
 ## License
 
 [MIT](LICENSE)
+
+---
+
+This repo replaces two earlier starters, [agent-starter](https://github.com/stylusnexus/agent-starter) and [test-starter](https://github.com/stylusnexus/test-starter), which are now archived.
