@@ -31,7 +31,7 @@ The `e2e/` directory contains Playwright testing infrastructure. Adapt it:
 - `e2e/mocks/ai-generation-mock.ts` — change route patterns to your API endpoints
 - `e2e/mocks/profile-mock.ts` — adjust tier configs and profile API route
 - `e2e/pages/sample-page.ts` — replace selectors with your UI elements
-- `e2e/app-contract.ts` — set the routes and security headers the smoke tests expect; use `null` for anything your app doesn't have
+- `e2e/app-contract.ts` — fill it in using the "Fill in the App Contract" rules in `SETUP.md` (ask the user only whether people sign in; read the rest from the code)
 - `e2e/auth.setup.ts` — configure for your auth system or use bypass mode
 
 ### Step 3: Install Skills from agent-plugins
