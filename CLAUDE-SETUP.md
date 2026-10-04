@@ -11,7 +11,7 @@ Read CLAUDE-SETUP.md and set up my project.
 This starter includes a complete development + testing infrastructure. When you run this setup, Claude will:
 
 1. **Scan your codebase** to understand your tech stack, project structure, and conventions
-2. **Customize AGENTS.md** with your project's overview, dev commands, and initial gotchas — `CLAUDE.md` just points there, leave it alone
+2. **Customize AGENTS.md** with your project's overview, dev commands, and initial gotchas — `CLAUDE.md` just points there, leave it alone. Delete the "About This Template" section at the top of `AGENTS.md` once setup is done; it describes the starter, not your project
 3. **Update guidances** to match your domain areas (auth, database, AI, etc.)
 4. **Configure agent definitions** with your project-specific context
 5. **Wire up testing** — update route patterns in mocks, selectors in page objects, auth config

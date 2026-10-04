@@ -98,7 +98,7 @@ In your report to the user, list every field you left `null` as "not checked yet
 
 ## Phase 2: Generate AGENTS.md
 
-Create `AGENTS.md` in the project root — the project brain every tool reads from. (If
+Create `AGENTS.md` in the project root — the project brain every tool reads from. The starter ships one with an "About This Template" section at the top; delete that section, since it describes the starter, not the user's project. (If
 `CLAUDE.md` doesn't already exist as a one-line pointer to it, add one: `Read
 [AGENTS.md](./AGENTS.md).` Don't duplicate content into both files.) Adapt the template
 below based on Phase 1 findings. Only include sections that are relevant. Don't add

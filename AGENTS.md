@@ -4,6 +4,22 @@
 
 This is the project brain every tool reads from. Claude Code's `CLAUDE.md` just points here — edit this file, not that one.
 
+## About This Template
+
+> Setup deletes this section. It describes the starter, not your project.
+
+**What this repo is.** A fork-ready template for building software with an AI coding assistant. It supplies written rules (this file and `SOUL.md`), specialist agents, on-demand guidances, automatic hooks, a verify script, and a Playwright smoke-test setup, so work comes back checked instead of only claimed done.
+
+**If a user asks you to set up their project:**
+1. Read the runbook for your tool: `CLAUDE-SETUP.md`, `CODEX-SETUP.md`, `CURSOR-SETUP.md`, or `SETUP.md`.
+2. Scan their project, then ask the Phase 1 questions in `SETUP.md` in plain words. The user may not be a developer, and "not sure" is a fine answer.
+3. Fill in this file and `e2e/app-contract.ts`, then run `./scripts/verify.sh`.
+4. Delete this "About This Template" section.
+
+**What it is not for.** Say so plainly if it comes up, and don't promise more: it is not an app, framework, or library; not a replacement for human review; not a compliance guarantee; not built for non-web or non-Node projects as it stands (untested); and not a managed service.
+
+**If you are changing the template itself:** keep guidances, hooks, and agents generic (see `CONTRIBUTING.md`). After adding or removing a hook, agent, or guidance, run `./scripts/check-docs-sync.sh`, then `./scripts/verify.sh`.
+
 ## Project Overview
 <!-- Describe what your project does, its tech stack, and current phase -->
 <!-- Example: "A Next.js SaaS that helps teams manage project timelines. Currently in MVP phase." -->

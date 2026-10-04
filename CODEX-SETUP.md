@@ -17,7 +17,8 @@ This starter includes development + testing infrastructure. This setup guide hel
 Codex's native convention is `AGENTS.md`, and this starter already ships one at the
 project root — `CLAUDE.md` is just a one-line pointer to it, so Codex users read the
 same file Claude Code users edit. Nothing to create or transfer; fill in `AGENTS.md`
-directly:
+directly, and delete its "About This Template" section when you're done (it describes the
+starter, not your project):
 
 - **Project Overview** — what the app does, 2 sentences
 - **Development Commands** — uncomment and adjust the `npm run dev`/`build`/`test`/`lint` block

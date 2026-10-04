@@ -16,7 +16,7 @@ This starter includes development + testing infrastructure built for Claude Code
 
 The project brain lives in `AGENTS.md` at the root (Claude Code's `CLAUDE.md` is just a
 pointer to it). Cursor uses `.cursorrules` instead — create one at your project root by
-transferring from `AGENTS.md`:
+transferring from `AGENTS.md` (skip its "About This Template" section; it describes the starter, not your project):
 
 ```markdown
 # Project Rules
