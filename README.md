@@ -46,7 +46,7 @@ Each setup doc walks your AI assistant through scanning your codebase and custom
 
 ### Testing Infrastructure
 
-- **Playwright E2E** — config, auth bypass, page objects, test suite
+- **Playwright E2E** — config, auth bypass, page objects, test suite; the smoke tests read their routes and expected headers from `e2e/app-contract.ts`, so you edit one file to fit your app
 - **AI mock fixtures** — route interception with JSON fixture files
 - **Profile mocking** — tier impersonation without real accounts
 - **Visual verification** — screenshot baseline comparison
@@ -129,6 +129,7 @@ full-starter/
 │   └── settings.json                  # All hooks wired
 │
 ├── e2e/                               # Playwright test infrastructure
+│   ├── app-contract.ts                # What the smoke tests assume about your app (edit this)
 │   ├── auth.setup.ts                  # Auth bypass
 │   ├── mocks/                         # AI + profile mocking
 │   ├── fixtures/                      # Deterministic test data

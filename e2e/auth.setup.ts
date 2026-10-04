@@ -9,6 +9,7 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from 'fs';
+import { appContract } from './app-contract';
 
 const authDir = path.join(__dirname, '../.playwright-auth');
 const authFile = path.join(authDir, 'user.json');
@@ -22,7 +23,7 @@ setup('authenticate', async ({ page }) => {
 
   if (bypassAuth) {
     console.log('[Auth] Bypass mode — skipping authentication');
-    await page.goto('/');
+    await page.goto(appContract.homePath);
     await page.waitForLoadState('load');
     await page.context().storageState({ path: authFile });
     return;
@@ -38,15 +39,22 @@ setup('authenticate', async ({ page }) => {
     );
   }
 
+  if (appContract.loginPath === null) {
+    throw new Error(
+      'Real-auth mode needs a login page, but e2e/app-contract.ts sets loginPath to null.\n' +
+      'Set E2E_BYPASS_AUTH=1, or set loginPath.'
+    );
+  }
+
   console.log('[Auth] Logging in with test credentials...');
-  await page.goto('/login');
+  await page.goto(appContract.loginPath);
   await page.waitForLoadState('domcontentloaded');
 
   await page.locator('input[type="email"]').fill(email);
   await page.locator('input[type="password"]').fill(password);
   await page.locator('button[type="submit"]').click();
 
-  await page.waitForURL(/\/(dashboard|home|app)/, { timeout: 10000 });
+  await page.waitForURL(appContract.postLoginUrl, { timeout: 10000 });
   console.log('[Auth] Login successful');
 
   await page.context().storageState({ path: authFile });
