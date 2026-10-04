@@ -39,7 +39,7 @@ Each setup doc walks your AI assistant through scanning your codebase and custom
 ### Development Infrastructure
 
 - **AGENTS.md** — project brain with rules, commands, and gotchas, read by every tool (`CLAUDE.md` is a one-line pointer to it)
-- **Guidances** — on-demand domain knowledge (AI safety, architectural decisions, database patterns, session hygiene, testing strategy, unattended agents)
+- **Guidances** — on-demand domain knowledge (AI safety, architectural decisions, database patterns, session hygiene, shared primitives, testing strategy, unattended agents)
 - **2 agents** — backend-engineer, technical-writer (plus 2 example templates to copy and rename)
 - **Agent memory** — empty scaffold directories per agent role, ready to fill in as you work
 - **13 hooks** — domain context loader, instrumentation check, test coverage advisory, require-tests guard, pre-commit secrets scan, pre-commit verify, session start, cleanup-logs, notify + notify-long-task, lockfile-integrity-check, suggest-commit-commands, db-truth-reminder
@@ -122,7 +122,7 @@ full-starter/
 ├── .release-please-manifest.json      # Optional — see release-please.yml
 │
 ├── .claude/
-│   ├── guidances/                     # 6 domain knowledge docs
+│   ├── guidances/                     # 7 domain knowledge docs
 │   ├── agents/                        # 3 agents (2 dev + 1 testing) + 2 templates
 │   ├── agent-memory/                  # Empty per-agent scaffold directories
 │   ├── hooks/                         # 13 hooks

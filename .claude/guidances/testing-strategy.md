@@ -28,6 +28,15 @@ This exists because of a bug class that survives ordinary review. Every intermed
 
 A test at hop three proves nothing about hop five. Only the terminus counts.
 
+## Green CI is not proof
+
+A passing check tells you the checks that ran passed. It doesn't tell you the right checks ran.
+
+- **Run the script CI runs.** Use the exact `npm run` script from the workflow, not a looser local command. A bare test runner often pulls in suites that need infrastructure you don't have, or skips the excludes CI applies, so its result tells you nothing about CI.
+- **Confirm a non-zero test count.** A test file placed where no `include` pattern reaches it never runs, and it looks exactly like a passing test. When you add tests in a new directory, run them and check the count went up.
+- **Read the summary counts before hunting a failure.** "0 failed" with a red build means an unhandled error outside any test (a teardown race, for example), not a broken assertion. Re-run once to separate flake from regression. An identical second failure is not a flake.
+- **A mock that supplies the value under test proves nothing.** If the mock returns the exact thing the test asserts, the test can't fail. For values that come from outside the process (a driver's return, an HTTP status, a row count), pin the behavior against the real dependency and confirm the test fails with the fix reverted.
+
 ## Patterns
 
 - Mock external services, not your own code
