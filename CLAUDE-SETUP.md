@@ -50,7 +50,7 @@ Install `codebase-intel@stylus-nexus` from the agent-plugins marketplace (see Re
 
 ### Step 4: CI Workflows
 
-- In `.github/workflows/test-smoke.yml`, uncomment and adjust the build/start steps for your app
+- In `.github/workflows/test-smoke.yml`, uncomment and adjust the build/start steps for your app once it has a build and start command. Until then, leave them commented (don't add commands that don't work yet)
 - Read `.github/workflows/CI-STRATEGY.md` to choose your testing tier (Minimal/Mid/Maximal)
 
 ### Step 5: Verify

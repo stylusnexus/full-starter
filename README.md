@@ -87,7 +87,7 @@ Each setup doc walks your AI assistant through scanning your codebase and custom
 - **Experiment-as-test** — quality regression detection with baselines
 - **3 CI workflows** — smoke (PR), regression (nightly), visual (UI changes)
 - **3 opt-in workflows** — lockfile integrity, commit lint, release-please (see `CI-STRATEGY.md`)
-- **1 agent** — test-reviewer (coverage gap analysis)
+- **2 agents** — test-reviewer (coverage gap analysis), qa-explorer (exploratory browser testing)
 
 ### Multi-Tool Setup Docs
 
@@ -156,7 +156,7 @@ full-starter/
 │
 ├── .claude/
 │   ├── guidances/                     # 7 domain knowledge docs
-│   ├── agents/                        # 3 agents (2 dev + 1 testing) + 2 templates
+│   ├── agents/                        # 4 agents (2 dev + 2 testing) + 2 templates
 │   ├── agent-memory/                  # Empty per-agent scaffold directories
 │   ├── hooks/                         # 13 hooks
 │   └── settings.json                  # All hooks wired
